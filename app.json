@@ -1,0 +1,27 @@
+{
+  "id": "0207c59a-a3a5-4b99-b048-dda9a1d70775",
+  "name": "Excel and CSV Import",
+  "publisher": "Kepty.cz, Ing. Tomas Kapitan",
+  "version": "1.0.0.0",
+  "brief": "SW Project E-Master - Ultimate solution to manage software projects in Business Central.",
+  "description": "SW Project E-Master - Ultimate solution to manage software projects in Business Central.",
+  "privacyStatement": "http://www.kepty.cz",
+  "EULA": "http://www.kepty.cz",
+  "help": "http://www.kepty.cz",
+  "url": "http://www.kepty.cz",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "18.0.0.0",
+  "application": "18.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 50099
+    }
+  ],
+  "contextSensitiveHelpUrl": "http://www.kepty.cz",
+  "applicationInsightsKey": "1a1f1e24-be4e-44b4-83af-df355d668138",
+  "showMyCode": true,
+  "runtime": "7.0"
+}
