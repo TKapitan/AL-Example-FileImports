@@ -32,7 +32,7 @@ codeunit 50001 "TKA Import File Format XLSX" implements "TKA IImport File Format
         TempExcelBuffer.OpenBookStream(FileInStream, SheetName);
         TempExcelBuffer.ReadSheet();
 
-        TempExcelBuffer.SetFilter("Row No.", '<=%1', ImportConfiguration."TKA Skip X Fields");
+        TempExcelBuffer.SetFilter("Row No.", '<=%1', ImportConfiguration."TKA Skip X Lines");
         TempExcelBuffer.DeleteAll();
         TempExcelBuffer.SetRange("Row No.");
         if not TempExcelBuffer.FindSet() then

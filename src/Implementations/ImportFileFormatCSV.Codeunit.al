@@ -27,7 +27,7 @@ codeunit 50000 "TKA Import File Format CSV" implements "TKA IImport File Format"
         ImportConfiguration.TestField("TKA Field Separator");
         TempCSVBuffer.LoadDataFromStream(FileInStream, ImportConfiguration."TKA Field Separator", '');
 
-        TempCSVBuffer.SetFilter("Line No.", '<=%1', ImportConfiguration."TKA Skip X Fields");
+        TempCSVBuffer.SetFilter("Line No.", '<=%1', ImportConfiguration."TKA Skip X Lines");
         TempCSVBuffer.DeleteAll();
         TempCSVBuffer.SetRange("Line No.");
         if not TempCSVBuffer.FindFirst() then

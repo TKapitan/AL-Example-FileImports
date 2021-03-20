@@ -28,7 +28,7 @@ table 50000 "TKA Import Configuration"
                 if xRec."TKA Import File Format" <> Rec."TKA Import File Format" then
                     exit;
                 "TKA Field Separator" := '';
-                "TKA Skip X Fields" := 0;
+                "TKA Skip X Lines" := 0;
             end;
         }
         field(15; "TKA Field Separator"; Code[1])
@@ -49,9 +49,9 @@ table 50000 "TKA Import Configuration"
                     Error(FieldSeparatorNotSupportedErr);
             end;
         }
-        field(16; "TKA Skip X Fields"; Integer)
+        field(16; "TKA Skip X Lines"; Integer)
         {
-            Caption = 'Skip X Fields';
+            Caption = 'Skip X Lines';
             MinValue = 0;
             DataClassification = CustomerContent;
         }

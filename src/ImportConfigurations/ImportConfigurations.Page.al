@@ -30,7 +30,7 @@ page 50000 "TKA Import Configurations"
                     ToolTip = 'Specifies format of imported file.';
                     ApplicationArea = All;
                 }
-                field("TKA Skip X Fields"; Rec."TKA Skip X Fields")
+                field("TKA Skip X Lines"; Rec."TKA Skip X Lines")
                 {
                     ToolTip = 'Specifies how many lines (from file start) should be skipped.';
                     ApplicationArea = All;
