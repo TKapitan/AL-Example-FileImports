@@ -3,12 +3,15 @@
 /// </summary>
 codeunit 50000 "TKA Import File Format CSV" implements "TKA IImport File Format"
 {
+    var
+        TempCSVBuffer: Record "CSV Buffer" temporary;
+
     /// <summary>
     /// Import lines from the select file. The file is selected by user. Based on implementation, some other selections may be neccessary (specific sheet/list/range, ...).
     /// </summary>
     /// <param name="ImportConfigurationCode">Code[20], definition of used import configuration</param>
     /// <returns>Return value of type Record "CSV Buffer" temporary, contains all lines from imported file.</returns>
-    procedure ImportFile(ImportConfigurationCode: Code[20]) TempCSVBuffer: Record "CSV Buffer" temporary
+    procedure ImportFile(ImportConfigurationCode: Code[20]): Record "CSV Buffer" temporary
     var
         ImportConfiguration: Record "TKA Import Configuration";
 
@@ -32,6 +35,57 @@ codeunit 50000 "TKA Import File Format CSV" implements "TKA IImport File Format"
         TempCSVBuffer.SetRange("Line No.");
         if not TempCSVBuffer.FindFirst() then
             Error(NoLinesFoundErr);
+        exit(TempCSVBuffer);
+    end;
+
+    /// <summary>
+    /// Returns value from selected line and column number.
+    /// </summary>
+    /// <param name="LineNo">Integer, specifies number of line.</param>
+    /// <param name="ColumnNo">Integer, specifies column number.</param>
+    /// <returns>Return value of type Text.</returns>
+    procedure GetValue(LineNo: Integer; ColumnNo: Integer): Text
+    begin
+        exit(TempCSVBuffer.GetValue(LineNo, ColumnNo));
+    end;
+
+    /// <summary>
+    /// Returns information whether the line was imported and exists in the buffer.
+    /// </summary>
+    /// <param name="LineNo">Integer, specifies number of line.</param>
+    /// <returns>Return value of type Boolean.</returns>
+    procedure Contains(LineNo: Integer): Boolean
+    var
+        TempCSVBuffer2: Record "CSV Buffer" temporary;
+    begin
+        TempCSVBuffer2.Copy(TempCSVBuffer, true);
+        TempCSVBuffer2.SetRange("Line No.", LineNo);
+        exit(not TempCSVBuffer2.IsEmpty());
+    end;
+
+    /// <summary>
+    /// Returns information whether the line was imported and exists in the buffer. Then verify whether the line contains the column.
+    /// </summary>
+    /// <param name="LineNo">Integer, specifies number of line.</param>
+    /// <param name="ColumnNo">Integer, specifies column number.</param>
+    /// <returns>Return value of type Boolean.</returns>
+    procedure Contains(LineNo: Integer; ColumnNo: Integer): Boolean
+    var
+        TempCSVBuffer2: Record "CSV Buffer" temporary;
+    begin
+        TempCSVBuffer2.Copy(TempCSVBuffer, true);
+        TempCSVBuffer2.SetRange("Line No.", LineNo);
+        TempCSVBuffer2.SetRange("Field No.", ColumnNo);
+        exit(not TempCSVBuffer2.IsEmpty());
+    end;
+
+    /// <summary>
+    /// Returns number of lines in buffer imported from file.
+    /// </summary>
+    /// <returns>Return value of type Integer.</returns>
+    procedure GetCountLines(): Integer
+    begin
+        exit(TempCSVBuffer.GetNumberOfLines());
     end;
 
     /// <summary>
